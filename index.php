@@ -1,8 +1,6 @@
 <?php
 	
 	define("VERSION", 1.1);
-	
-	error_reporting(E_ALL ^ E_DEPRECATED);
 
     include("inc/functions.php");
     include("inc/mysql.php");

@@ -1,8 +1,14 @@
 <h2>Sitemaps</h2>
 <?php
-
-    include("../inc/mysql.php");
     include("../inc/functions.php");
+    include("../inc/mysql.php");
+	
+	// Connect to MySQL
+	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
+		mysql_select_db($db["base"]);
+		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
+	}
+	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
     
     $map = NULL; $u = 0;
 
@@ -42,22 +48,6 @@
     fputs($gzsitemap,$gzx);
     fclose($gzsitemap);
     
-    echo '<p class="success"><a href="/sitemap.xml">/sitemap.xml</a> : '.$u.' urls traitées (<a href="http://www.validome.org/google/validate?url=http://www.librys.fr/sitemap_'.$s["id"].'.xml&lang=en&googleTyp=SITEMAP">validation</a>)</p>';
+    echo '<p class="success"><a href="/sitemap.xml">/sitemap.xml</a> : '.$u.' urls traitï¿½es (<a href="http://www.validome.org/google/validate?url=http://www.librys.fr/sitemap_'.$s["id"].'.xml&lang=en&googleTyp=SITEMAP">validation</a>)</p>';
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

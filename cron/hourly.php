@@ -1,6 +1,15 @@
 <?php
-    include("/home/nokto/citriq/inc/functions.php");
-    include("/home/nokto/citriq/inc/mysql.php");
+    include("../inc/functions.php");
+    include("../inc/mysql.php");
+	
+	error_reporting(E_ALL ^ E_DEPRECATED);
+	
+	// Connect to MySQL
+	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
+		mysql_select_db($db["base"]);
+		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
+	}
+	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
 	
     $date = date("Y-m-d",strtotime("- 1 month"));
 	

@@ -2,6 +2,8 @@
 
 	define("SITE_PATH", dirname(__DIR__)."/");
 	
+	error_reporting(E_ALL ^ E_DEPRECATED);
+	
 	function biblys($x, $m = "book")
 	{
 		if ($m == "look")
