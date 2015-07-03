@@ -77,6 +77,8 @@
         <meta http-equiv="Content-Language" content="fr" />
         
         <meta name="google-site-verification" content="RCun84e5ljf2SbmRVDa3xQVBvLQ1HJMENfuXg672-pg" />
+		
+		<meta name="viewport" content="width=device-width">
         
         <link type="text/css" media="screen" rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.6.custom.css" />
         <link type="text/css" media="screen" rel="stylesheet" href="/css/styles.css" />
@@ -343,7 +345,7 @@
     
     echo '
                 <div id="nav" class="right">
-                <a href="/"><img src="/img/logo.png" /></a>
+                <a href="/"><img src="/img/logo.png" class="logo" /></a>
                 <p'.$activeheadline.'><a href="/?o=headline">&Agrave; la une</a></p>
                 <p'.$activenews.'><a href="/?o=news">Derni&#232;res critiques</a></p>
                 <p'.$activetop.'><a href="/?o=top">Livres les plus critiqu&#233;s</a></p>

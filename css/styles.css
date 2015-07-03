@@ -54,18 +54,22 @@ label {
 }
 
 #page {
-    width: 850px;
+    width: 768px;
     margin: 0 auto;
     /*margin-top: 20px;*/
 }
 
 #nav {
-    width: 250px;
+    width: 200px;
     /*margin-top: 20px;*/
     padding-top: 10px;
     display: inline;
     float: left;
     position: fixed;
+}
+
+#nav .logo {
+    width: 200px;
 }
 
 #nav p {
@@ -91,7 +95,7 @@ label {
 
 #content {
     background-color: #fff;
-    width: 600px;
+    width: 568px;
     display: inline;
     float: right;
     padding: 100px 0 25px 0;
@@ -107,10 +111,10 @@ label {
 
 #search {
     position: fixed;
-    margin-left: 250px;
+    margin-left: 200px;
     /*margin-top: 20px;*/
     background-color: #fff;
-    width: 600px;
+    width: 568px;
     padding-top: 15px;
     border-bottom: 1px solid #ddd;
 }
