@@ -1,6 +1,8 @@
 <?php
 	
 	define("VERSION", 1.1);
+	
+	error_reporting(E_ALL ^ E_DEPRECATED);
 
     include("inc/functions.php");
     include("inc/mysql.php");
@@ -85,15 +87,15 @@
         
         <link rel="alternate" type="application/rss+xml" title="Derni&egrave;res critiques" href="http://feeds.feedburner.com/citriq" />
         
-        <title><? echo $_TITLE; ?></title>
+        <title><?php echo $_TITLE; ?></title>
         
-		<? echo $_OPENGRAPH; ?>
+		<?php echo $_OPENGRAPH; ?>
 		
         <script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script> 
         <script type="text/javascript" src="/js/jqueryui-1.8.6.js"></script>
         <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
         <script type="text/javascript" src="/js/jquery.tablesorter.pager.js"></script>
-        <script type="text/javascript" src="/js/index.js?<? echo VERSION; ?>"></script>
+        <script type="text/javascript" src="/js/index.js?<?php echo VERSION; ?>"></script>
         
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -108,7 +110,7 @@
     </head>
     <body>
         
-        <input type="hidden" id="user_uid" value="<?php echo $_SESSION["user_key"] ?>" />
+        <input type="hidden" id="user_uid" value="<?php echo (isset($_SESSION["user_key"]) ? $_SESSION["user_key"] : null) ?>" />
         
     <?php 
         

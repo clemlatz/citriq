@@ -306,7 +306,7 @@ function filepath($x, $m = "test", $t = "cover") {
         if(strlen($x) == 12) { // Si c'est un code a 13 chiffres
                 $A = substr($x,0,3); // On extrait le code produit (3 premiers chiffres)
                 $x = substr($x,3,13); //  Et on le retire du code
-                if($A != 978 && $B != 979) $result = False;
+                if ($A != 978 && isset($B) && $B != 979) $result = False;
         }
         if(empty($A)) $A = "978"; // Si le code produit n'est pas precise (ISBN10), on le cree
         if(is_numeric($x) and strlen($x) == 9) { // Si tout va bien, le code fait maintenant 9 chiffres
