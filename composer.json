@@ -1,0 +1,10 @@
+{
+    "name": "iwazaru/citriq",
+    "authors": [
+        {
+            "name": "Clement Bourgoin",
+            "email": "cb@nokto.net"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,5 @@
+/vendor/
+/bin/
+/img/cover/*
+!.gitkeep
+/inc/mysql.php

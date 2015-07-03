@@ -1,0 +1,24 @@
+SetEnv PHP_VER 5
+SetEnv REGISTER_GLOBALS 0
+
+Options +FollowSymlinks
+RewriteEngine on
+
+#ErrorDocument 404 /
+
+# Redirection /x/
+RewriteRule ^x/(.*)$  /xhr.php?url=$1 [QSA,L]
+
+# Redirection /widget/
+RewriteRule ^widget/(.*)$  /w/widget.php?x=$1 [QSA,L]
+
+# Redirection /pages/
+RewriteRule ^pages/(.*)$  /?page=$1 [QSA,L]
+
+# Redirection livres /978212340590
+RewriteRule ^([0-9]{13})$  /?page=book&ean=$1 [QSA,L]
+
+# Redirection critiques /dW6
+RewriteCond %{REQUEST_URI} !/go.php$
+RewriteRule ^([a-zA-Z0-9]+)$  /go.php?url=$1 [QSA,L]
+
