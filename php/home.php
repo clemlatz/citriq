@@ -72,6 +72,6 @@
         $rw++;
     }
     if(empty($rw)) echo '<p class="center">Aucun r&eacute;sultat pour cette recherche.<br /> Pourquoi ne pas <span class="add pointer">ajouter une critique</span> ?</p>';
-    echo '<p id="copyright">&copy; <a href="http://nokto.net/">nokto.net</a> 2010-'.date('Y').'</p>';
+    echo '<p id="copyright">citriq v'.VERSION.' &copy; <a href="http://nokto.net/">nokto.net</a> 2010 - '.date('Y').'</p>';
 
 ?>
