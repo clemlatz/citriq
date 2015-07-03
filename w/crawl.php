@@ -109,9 +109,9 @@
 					echoj("  <ul>");
 				}
 				while($r = mysql_fetch_array($reviews)) {
-					// echoj("    <li>");
-					// echoj("      <a href=\"http://citriq.net/".$r["review_shorturl"]."\">Voir l'avis de ".htmlentities(utf8_decode($r['site_name']))."</a>"); // Ajouté utf8_decode dans html_entities de $r[site_name] le 17/02/2014 pour mesimaginaires.net
-					// echoj("    </li>");
+					echoj("    <li>");
+					echoj("      <a href=\"http://citriq.net/".$r["review_shorturl"]."\">Voir l'avis de ".htmlentities($r['site_name'])."</a>"); // Ajouté utf8_decode dans html_entities de $r[site_name] le 17/02/2014 pour mesimaginaires.net
+					echoj("    </li>");
 					mysql_query("UPDATE `reviews` SET `review_views` = `review_views`+1 WHERE `review_id` = '$r[review_id]'");
 				}
 				if(!empty($num)) {
