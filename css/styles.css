@@ -97,7 +97,6 @@ label {
 #content {
     background-color: #fff;
     width: 568px;
-    display: inline;
     float: right;
     padding: 100px 0 25px 0;
     margin-bottom: 25px;
@@ -341,10 +340,24 @@ td, th {
   
     #content {
         float: none;
+        padding: 0;
+        width: 100%;
     }
     
     #search {
-        display: none;
+        position: static;
+        float: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    #search input[type=text] {
+        width: 50%;
+    }
+    
+    #pages {
+        margin-top: 7px;
     }
     
     .book {
