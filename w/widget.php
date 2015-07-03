@@ -1,6 +1,13 @@
 <?
     include("../inc/mysql.php");
     include("../inc/functions.php");
+	
+	// Connect to MySQL
+	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
+		mysql_select_db($db["base"]);
+		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
+	}
+	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
     
     if(strstr($_SERVER['HTTP_REFERER'],"debug=1") || $_GET["debug"] == 1) $_DEBUG = 1;
     
@@ -21,7 +28,7 @@
             
             $review = mysql_query("SELECT `review_id`, `review_ean` FROM `reviews` WHERE `review_shorturl` = '".$x."' AND `site_id` = '".$s["site_id"]."' LIMIT 1") or die("Erreur : ".mysql_error());
             if($rev = mysql_fetch_array($review)) {
-                // Si la critique est dŽeja en base, on l'update
+                // Si la critique est dï¿½eja en base, on l'update
                 mysql_query("UPDATE `reviews` SET `review_called` = NOW() WHERE `review_id` = '".$rev["review_id"]."' LIMIT 1") or die(mysql_error());
                 
                 // Affichage des critiques correspondantes sur les autres sites
