@@ -5,3 +5,4 @@
 /inc/mysql.php
 .ovhconfig
 .DS_Store
+sitemap*
