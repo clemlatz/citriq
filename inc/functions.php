@@ -1,7 +1,7 @@
 <?php
 
-	define("SITE_PATH","/homez.378/nokto/citriq/");
-
+	define("SITE_PATH", dirname(__DIR__)."/");
+	
 	function biblys($x, $m = "book")
 	{
 		if ($m == "look")
@@ -284,7 +284,7 @@ function filepath($x, $m = "test", $t = "cover") {
     $filedir = "img/".$t."/".substr($x,-3,3)."/"; // Chemin relatif vers le dossier o doit se trouver le fichier
     $filepath = SITE_PATH.$filedir.$x.".jpg";
     $fileurl = "/".$filedir.$x.".jpg";
-    
+	
     if($m == "url") return $fileurl;
     if($m == "test") {        
         if(file_exists($filepath)) return true;

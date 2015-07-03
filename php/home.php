@@ -32,8 +32,7 @@
             else $b["reviews"] .= '<p>&#8594; <a href="/'.$b["book_ean"].'">Voir les '.$ir.' autres critiques</a></p>';
         }
         
-        
-        if(filepath($b["book_ean"])) $b["image"] = '<img src="'.filepath($b["book_ean"],"url").'" />';
+        if (filepath($b["book_ean"])) $b["image"] = '<img src="'.filepath($b["book_ean"],"url").'" />';
         else $b["image"] = '';
         
         if(!empty($b["book_title"])) {
