@@ -110,6 +110,10 @@ label {
     text-align: center;
 }
 
+#mobile-header {
+    display: none;
+}
+
 #search {
     position: fixed;
     margin-left: 200px;
@@ -127,7 +131,7 @@ label {
 }
 
 #copyright {
-    margin-top: 20px;
+    padding: 20px 0;
     clear: both;
     font-size: 0.8em;
     text-align: center;
@@ -309,4 +313,49 @@ table {
 td, th {
     padding: 10px;
     border-bottom: 1px solid #ccc;
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+  
+    #mobile-header {
+        display: block;
+        padding-top: 25px;
+        padding-bottom: 15px;
+    }
+    
+    #mobile-header .logo {
+        display: block;
+        margin: auto;
+        max-width: 150px;
+    }
+    
+    #page {
+        background: white;
+        width: 100%;
+    }
+  
+    #nav {
+        display: none;
+    }
+  
+    #content {
+        float: none;
+    }
+    
+    #search {
+        display: none;
+    }
+    
+    .book {
+        min-height: 0;
+    }
+    
+    .book-cover {
+        display: none;
+    }
+    
+    .book-data {
+        margin: 0;
+    }
 }

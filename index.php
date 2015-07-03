@@ -281,6 +281,9 @@
         
     ?>
         </div>
+		<div id="mobile-header">
+			<img src="img/citriq.png" class="logo" alt="Citriq">
+		</div>
         <div id="page">
             <div id="header">
                 <h1>CITRIQ</h1>
