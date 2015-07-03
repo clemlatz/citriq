@@ -67,10 +67,8 @@
   
     
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -112,7 +110,6 @@
         
         <input type="hidden" id="user_uid" value="<?php echo $_SESSION["user_key"] ?>" />
         
-        <div id="axys">
     <?php 
         
         if(auth() and $_SITE) {
@@ -345,7 +342,7 @@
     
     echo '
                 <div id="nav" class="right">
-                <a href="/"><img src="/img/logo.png" class="logo" /></a>
+                <a href="/"><img src="/img/citriq.png" class="logo" /></a>
                 <p'.$activeheadline.'><a href="/?o=headline">&Agrave; la une</a></p>
                 <p'.$activenews.'><a href="/?o=news">Derni&#232;res critiques</a></p>
                 <p'.$activetop.'><a href="/?o=top">Livres les plus critiqu&#233;s</a></p>
