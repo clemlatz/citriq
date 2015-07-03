@@ -1,5 +1,8 @@
 <?php
 
+    error_reporting(E_ALL ^ E_DEPRECATED);
+    ini_set('display_errors', 1);
+
     include("../inc/mysql.php");
     include("../inc/functions.php");
 	
@@ -12,16 +15,21 @@
     
     // Mise au format EAN
     $ean = isbn($_GET["isbn"],"EAN");
-    $ref = $_SERVER['HTTP_REFERER'];
     $uid = $_GET["uid"];
 	
+    $ref = null;
+    $ref = "http://mesimaginaires.net/2015/06/24/le-cercle-de-farthing-jo-walton/";
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        $ref = $_SERVER['HTTP_REFERER'];
+    }
+    
 	// Multi domaine noosfere
 	if (strstr($ref,'http://www.noosfere.org/')) $ref = str_replace('www.noosfere.org','www.noosfere.com',$ref);
 	elseif (strstr($ref,'http://www.noosfere.net/')) $ref = str_replace('www.noosfere.net','www.noosfere.com',$ref);
 	elseif (strstr($ref,'http://www.noosfere.fr/')) $ref = str_replace('www.noosfere.fr','www.noosfere.com',$ref);
 	
 	// Mode debug
-    if (strstr($ref,"debug=1") || $_GET["debug"]) {
+    if (strstr($ref,"debug=1") || isset($_GET["debug"])) {
 		$_DEBUG = 1;
 		$ref = str_replace('&debug=1','',$ref);
 		$ref = str_replace('?debug=1','',$ref);
@@ -101,9 +109,9 @@
 					echoj("  <ul>");
 				}
 				while($r = mysql_fetch_array($reviews)) {
-					echoj("    <li>");
-					echoj("      <a href=\"http://citriq.net/".$r["review_shorturl"]."\">Voir l'avis de ".htmlentities(utf8_decode($r['site_name']))."</a>"); // Ajouté utf8_decode dans html_entities de $r[site_name] le 17/02/2014 pour mesimaginaires.net
-					echoj("    </li>");
+					// echoj("    <li>");
+					// echoj("      <a href=\"http://citriq.net/".$r["review_shorturl"]."\">Voir l'avis de ".htmlentities(utf8_decode($r['site_name']))."</a>"); // Ajouté utf8_decode dans html_entities de $r[site_name] le 17/02/2014 pour mesimaginaires.net
+					// echoj("    </li>");
 					mysql_query("UPDATE `reviews` SET `review_views` = `review_views`+1 WHERE `review_id` = '$r[review_id]'");
 				}
 				if(!empty($num)) {

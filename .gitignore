@@ -3,3 +3,5 @@
 /img/cover/*
 !.gitkeep
 /inc/mysql.php
+.ovhconfig
+.DS_Store
