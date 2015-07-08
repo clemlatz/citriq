@@ -67,4 +67,4 @@
             imagepng($im);
         }
     }
-?>
+    mysql_close();

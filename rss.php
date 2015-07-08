@@ -65,5 +65,5 @@
     $xml .= '</rss>';
            
     echo $xml;
-  
-?>
+    
+    mysql_close();

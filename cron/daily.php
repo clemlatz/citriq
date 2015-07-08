@@ -50,4 +50,4 @@
     
     echo '<p class="success"><a href="/sitemap.xml">/sitemap.xml</a> : '.$u.' urls trait�es (<a href="http://www.validome.org/google/validate?url=http://www.librys.fr/sitemap_'.$s["id"].'.xml&lang=en&googleTyp=SITEMAP">validation</a>)</p>';
 
-?>
+    mysql_close();

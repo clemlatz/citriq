@@ -124,4 +124,5 @@
 			} else debug("CITRIQ : Site r&eacute;f&eacute;rent inconnu. (0)");
         } else debug("CITRIQ : Site r&eacute;f&eacute;rent inconnu. ($domaine[0])");
     }
-?>
+
+    mysql_close();

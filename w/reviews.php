@@ -37,4 +37,5 @@
             //} else echoj("CITRIQ : Site référent inconnu");
         } else echoj("CITRIQ : Pas de site référent");
     }
-?>
+
+    mysql_close();

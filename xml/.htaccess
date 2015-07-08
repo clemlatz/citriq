@@ -1,7 +1,0 @@
-Options +FollowSymlinks
-Options -Indexes
-RewriteEngine on
-
-# Redirection /
-RewriteCond %{REQUEST_URI} !/index.php
-RewriteRule ^(.*)$  /xml/index.php?url=$1 [QSA,L]
