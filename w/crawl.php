@@ -18,7 +18,6 @@
     $uid = $_GET["uid"];
 	
     $ref = null;
-    $ref = "http://mesimaginaires.net/2015/06/24/le-cercle-de-farthing-jo-walton/";
     if (isset($_SERVER['HTTP_REFERER'])) {
         $ref = $_SERVER['HTTP_REFERER'];
     }
