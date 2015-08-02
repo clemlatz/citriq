@@ -1,6 +1,6 @@
 <?php
 	
-	define("VERSION", "1.1.2");
+	define("VERSION", "1.1.3");
 
     include("inc/functions.php");
     
