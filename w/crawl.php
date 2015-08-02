@@ -2,23 +2,14 @@
 
     error_reporting(E_ALL ^ E_DEPRECATED);
     ini_set('display_errors', 1);
-
-    include("../inc/mysql.php");
+    
     include("../inc/functions.php");
-	
-	// Connect to MySQL
-	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
-		mysql_select_db($db["base"]);
-		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
-	}
-	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
     
     // Mise au format EAN
     $ean = isbn($_GET["isbn"],"EAN");
     $uid = $_GET["uid"];
 	
     $ref = null;
-    $ref = "http://mesimaginaires.net/2015/06/24/le-cercle-de-farthing-jo-walton/";
     if (isset($_SERVER['HTTP_REFERER'])) {
         $ref = $_SERVER['HTTP_REFERER'];
     }

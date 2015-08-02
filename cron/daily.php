@@ -1,14 +1,6 @@
 <h2>Sitemaps</h2>
 <?php
     include("../inc/functions.php");
-    include("../inc/mysql.php");
-	
-	// Connect to MySQL
-	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
-		mysql_select_db($db["base"]);
-		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
-	}
-	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
     
     $map = NULL; $u = 0;
 
