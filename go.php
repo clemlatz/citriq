@@ -1,16 +1,6 @@
 <?php
 
-	//print_r($_GET);
-
-    include("inc/mysql.php");
     include("inc/functions.php");
-    
-	// Connect to MySQL
-	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
-		mysql_select_db($db["base"]);
-		mysql_set_charset('utf8'); // Encodage de la connexion MySQL
-	}
-	else die("<h1>Maintenance du site en cours...</h1><p>Merci de votre compr&#233;hension !</p>");
     
     $redirect = NULL;
     $reviews = mysql_query("SELECT `review_id`, `review_url`, `site_id`, `review_uid` FROM `reviews` WHERE `review_shorturl` = '".$_GET["url"]."' LIMIT 1") or die("Erreur : ".mysql_error());
