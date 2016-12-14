@@ -496,6 +496,14 @@ function short_url($num) {
 	// Get MySQL credentials and config
     include("config.php");
 
+    // Redirect to HTTPS if forced in config
+    if ($https === true && (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off")) {
+        $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: ' . $redirect);
+        exit();
+    }
+
 	// Connect to MySQL
 	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
 		mysql_select_db($db["base"]);
