@@ -73,7 +73,7 @@
         <link type="text/css" media="screen" rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.6.custom.css" />
         <link type="text/css" media="screen" rel="stylesheet" href="/css/styles.css" />
 
-        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
         <link rel="alternate" type="application/rss+xml" title="Derni&egrave;res critiques" href="http://feeds.feedburner.com/citriq" />
 
