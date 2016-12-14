@@ -1,25 +1,25 @@
 <?php
-	
+
 	define("VERSION", "1.1.3");
 
     include("inc/functions.php");
-    
+
     // Variables GET
     if(isset($_GET["q"])) $q = $_GET["q"]; else $q = NULL;
-    
+
     // Lancement de la session
     ini_set('session.use_only_cookies', '1');
     ini_set('session.use_trans_sid', '1');
     ini_set('url_rewriter.tags', '');
     session_start();
-	
+
 	// Identification
 	if(auth()) {
 		$_LOG = auth('log');
 		$user_site = mysql_query("SELECT `site_id`, `site_url` FROM `sites` WHERE `user_id` = '".$_LOG["user_id"]."' LIMIT 1") or die("Erreur : ".mysql_error());
         if($_SITE = mysql_fetch_array($user_site)) $ok = 1;
     }
-    
+
     // Inscription
     if($_POST) {
         $content = NULL; $headers = NULL;
@@ -31,10 +31,10 @@
         mail("cb@nokto.net","CITRIQ | Nouveau site",$content,$headers) or die('erreur');
         $_MESSAGE = '<p class="success">Votre demande a bien été enregistrée, elle sera traitée sous 48h.</p>';
     }
-    
+
 	$_TITLE = 'CITRIQ - Toutes les critiques littéraires';
 	$_OPENGRAPH = NULL;
-	
+
     // Livres
 	if(!empty($_GET["page"])) {
 		if($_GET["page"] == 'book' and $_GET["ean"]) {
@@ -54,10 +54,10 @@
 			}
 		}
 	}
-    
+
     mysql_select_db($db1["base"]);
-  
-    
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,28 +65,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
         <meta http-equiv="Content-Language" content="fr" />
-        
+
         <meta name="google-site-verification" content="RCun84e5ljf2SbmRVDa3xQVBvLQ1HJMENfuXg672-pg" />
-		
+
 		<meta name="viewport" content="width=device-width">
-        
+
         <link type="text/css" media="screen" rel="stylesheet" href="/css/ui-lightness/jquery-ui-1.8.6.custom.css" />
         <link type="text/css" media="screen" rel="stylesheet" href="/css/styles.css" />
-        
+
         <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-        
+
         <link rel="alternate" type="application/rss+xml" title="Derni&egrave;res critiques" href="http://feeds.feedburner.com/citriq" />
-        
+
         <title><?php echo $_TITLE; ?></title>
-        
+
 		<?php echo $_OPENGRAPH; ?>
-		
-        <script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script> 
+
+        <script type="text/javascript" src="/js/jquery-1.5.2.min.js"></script>
         <script type="text/javascript" src="/js/jqueryui-1.8.6.js"></script>
         <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script>
         <script type="text/javascript" src="/js/jquery.tablesorter.pager.js"></script>
         <script type="text/javascript" src="/js/index.js?<?php echo VERSION; ?>"></script>
-        
+
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-1439349-21']);
@@ -99,13 +99,13 @@
         </script>
     </head>
     <body>
-        
+
         <input type="hidden" id="user_uid" value="<?php echo (isset($_SESSION["user_key"]) ? $_SESSION["user_key"] : null) ?>" />
-        
-    <?php 
-        
+
+    <?php
+
         if(auth() and $_SITE) {
-			
+
             // Ajouter une critique
             echo '
                 <div id="add" class="dialog">
@@ -127,22 +127,22 @@
                         <form id="reviewAddForm" style="clear: right;">
                             <fieldset>
                                 <input type="hidden" id="review_ean" />
-                                
+
                                 <label for="review_url">URL de la critique :</label>
                                 <input type="text" id="review_url" class="textcon" value="'.$_SITE["site_url"].'" />
                                 <span id="review_urlContext" class="context">Adresse de la page o&ugrave; se trouve votre critique.<br /><em>Obligatoire</em></span>
                                 <br />
-                                
+
                                 <label for="review_excerpt">Extrait :</label>
                                 <textarea id="review_excerpt" class="textcon"></textarea>
                                 <span id="review_excerptContext" class="context count">Un extrait de votre critique.<br /><span id="review_excerptCount">0</span>/<span id="review_excerptMax">512</span> caract&egrave;res<br /><em>Facultatif</em></span>
                                 <br />
-                                
+
                                 <label for="review_score">Note :</label>
                                 <input type="text" id="review_score" class="short textcon" maxlength="3" /> / 100
                                 <span id="review_scoreContext" class="context">Attention, votre note doit &ecirc;tre exprim&eacute;e en pourcentage et doit &ecirc;tre un nombre entier.<br />Ex : 3.5/5 = 70, 13/20 = 65.<br /><em>Facultatif</em></span>
                                 <br />
-                                
+
                                 <input type="submit" id="submitReviewAddForm" value="Ajouter la critique &#224; CITRIQ" />
                             </fieldset>
                         </form>
@@ -198,7 +198,7 @@
                             </tr>
                 ';
             }
-            
+
             echo '
                         </tbody>
                     </table>
@@ -228,7 +228,7 @@
                             </tr>
                 ';
             }
-            
+
             echo '
                         </tbody>
                     </table>
@@ -243,34 +243,34 @@
                     <p>Pour ajouter une critique, il faut en premier lieu inscrire votre site au beta-test. Les inscriptions étant validées manuellement, vous recevrez une réponse sous 48h et pourrez commencer à enregistrer des critiques. Dans ce but, merci de renseigner le formulaire ci-dessous.</p>
                     <form action="/" method="post">
                         <fieldset>
-                        
+
                             <input type="hidden" name="user_id" value="'.$_LOG["user_id"].'" />
                             <input type="hidden" name="user_email" value="'.$_LOG["user_email"].'" />
-                        
+
                             <label for="site_name">Nom du site/blog :</label>
                             <input type="text" name="site_name" for="site_name" />
                             <br />
-                            
+
                             <label for="site_url">Adresse du site/blog :</label>
                             <input type="text" name="site_url" for="site_url" value="http://" />
                             <br />
-                            
+
                             <input type="submit" value="Envoyer" />
-                            
+
                         </fieldset>
                     </form>
                 </div>
             ';
-            
+
         } else {
             echo '
                 <div id="add" class="dialog">
-                    <h3><a href="http://axys.me/login/">Connectez-vous</a> ou <a href="http://axys.me/#Inscription">inscrivez-vous</a> pour participer à Citriq.</h3>
+                    <h3><a href="https://axys.me/login/">Connectez-vous</a> ou <a href="https://axys.me/#Inscription">inscrivez-vous</a> pour participer à Citriq.</h3>
                 </div>
             ';
         }
-        
-        
+
+
     ?>
         </div>
 		<div id="mobile-header">
@@ -283,7 +283,7 @@
             </div>
 
 <?php
-    
+
     if(!empty($_GET["q"])) {
         $qex = explode(" ",$_GET["q"]);
         $req = "AND "; $i = 0;
@@ -295,7 +295,7 @@
         }
         $_GET["o"] = "news";
     } else $req = NULL;
-    
+
     $activeheadline = NULL; $activenews = NULL; $activetop = NULL; $activesites = NULL; $o = NULL;
     if(empty($_GET["page"])) {
         if(empty($_GET["o"])) $_GET["o"] = "headline";
@@ -310,7 +310,7 @@
     } else {
         if($_GET["page"] == "sites") $activesites = ' class="active"';
     }
-    
+
     $num = mysql_num_rows(mysql_query("SELECT `review_id` FROM `reviews` JOIN `sites` USING(`site_id`)  WHERE `review_title` != '0'".$req." GROUP BY `review_ean`"));
 
     // Pages
@@ -325,16 +325,16 @@
     if($np < $num) $next = ' <a href="/?p='.$np.$query.$o.'">Suiv. &#187;</a>'; else $next = NULL;
     $p = $_GET["p"]+1;
     $pages = '<p id="pages">'.$previous.$p.'-'.$np.' sur '.$num.$next;
-    
+
     // Order by
     if(!isset($_GET["o"])) {
         if(isset($_GET["q"])) $_GET["o"] = "news";
         else $_GET["o"] = "headline";
     }
-    
+
     if(isset($_GET["q"])) $custom_rss = '<a href="http://citriq.net/rss?q='.$_GET["q"].'"><img src="/img/icon_feed_16x16.png" alt="feed" /></a>';
     else $custom_rss = NULL;
-    
+
     echo '
                 <div id="nav" class="right">
                 <a href="/"><img src="/img/citriq.png" class="logo" /></a>
@@ -381,17 +381,17 @@
     include("php/".$_GET["page"].".php");
     echo '</div>';
 ?>
-            
+
         </div>
-		
+
 		<ul id="addToAxysMenu" class="hidden">
 		</ul>
-		
+
 		<?php
-		if(auth()) echo '<script type="text/javascript" src="http://axys.me/widget.php?UID='.$_COOKIE["UID"].'"></script>';
-					else echo '<script type="text/javascript" src="http://axys.me/widget.php"></script>';
+		if(auth()) echo '<script type="text/javascript" src="https://axys.me/widget.php?UID='.$_COOKIE["UID"].'"></script>';
+					else echo '<script type="text/javascript" src="https://axys.me/widget.php"></script>';
 		?>
-		
+
     </body>
 </html>
 

@@ -1,23 +1,23 @@
 <?php
 
 	define("SITE_PATH", dirname(__DIR__)."/");
-	
+
 	error_reporting(E_ALL ^ E_DEPRECATED);
-	
+
 	function biblys($x, $m = "book")
 	{
 		if ($m == "look")
 		{
 			// API Url
 			$url = 'http://api.biblys.fr/v0/articles/search/'.rawurlencode($x);
-			
+
 			// API Call
 			$curl = curl_init();
 			curl_setopt($curl, CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			$return = curl_exec($curl);
 			$result = json_decode($return, true);
-			
+
 			if (!empty($result['meta']['results']))
 			{
 				foreach ($result['articles'] as $b)
@@ -35,24 +35,24 @@
 					';
 				}
 			}
-			
+
 			return $res;
 		}
 		elseif($m == "book")
 		{
 			// API Url
 			$url = 'http://api.biblys.fr/v0/articles/get/'.rawurlencode($x);
-			
+
 			// API Call
 			$curl = curl_init();
 			curl_setopt($curl, CURLOPT_URL, $url);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			$return = curl_exec($curl);
 			$result = json_decode($return, true);
-			
+
 			$r = array();
 			if (!empty($result['meta']['results']))
-			{	
+			{
 				$r["book_title"] = $result['article'][0]['article_title'];
 				$r["book_author"] = $result['article'][0]['article_authors'];
 				$r["book_publisher"] = $result['publisher'][0]['publisher_name'];
@@ -62,7 +62,7 @@
 					if($m["type"] == "cover") $r["image"] = $m['url'];
 				}
 			}
-			
+
 			return utf8_array_decode($r);
 		}
 	}
@@ -72,12 +72,12 @@
 
 function utf8_array_decode($input) {
     $return = array();
-    foreach ($input as $key => $val) 
+    foreach ($input as $key => $val)
     {
       $k = utf8_decode($key);
       $return[$k] = utf8_decode($val);
     }
-    return $return;          
+    return $return;
 }
 
 function amazon($x,$m = "book") {
@@ -158,29 +158,29 @@ function amazon($x,$m = "book") {
                 }
             }
             return $res;
-           
+
         }
-        
+
     }
 }
 
 function noosfere($x) {
     $url = "http://www.noosfere.org/biblio/xml_livres.asp?resume=1&isbn=".$x;
-	
+
     $xml = simplexml_load_file($url); //or echo 'Erreur dans le flux noosfere :<br /> <a href="'.$url.'">'.$url.'</a>';
     $num = count($xml->Livre);
-  
+
     $x = NULL;
     foreach($xml->Livre as $n)
     {
-        $x["book_title"] = $n->Titre;      
+        $x["book_title"] = $n->Titre;
         $x["book_publisher"] = $n->Editeur;
         $x["book_item"] = $n['IdItem'];
         $x["book_noosfere_id"] = $n['IdLivre'];
         $x["image"] = $n->Couverture['LienCouverture'];
-      
+
         $x = utf8_array_decode($x);
-      
+
         $x["book_author"] = NULL;
         // Intervenants doit être après utf8_array_decode !!!
         if(!empty($xml->Livre->Intervenants->Intervenant)) {
@@ -191,9 +191,9 @@ function noosfere($x) {
                 }
             }
         }
-        
+
         $x["book_amazon_asin"] = NULL;
-        
+
         return $x;
     }
 }
@@ -202,7 +202,7 @@ function noosfere($x) {
 	function auth($type = "user") {
 		global $_GET;
 		global $_SITE;
-		
+
 		// Connexion (retour axys)
 		if(isset($_GET["UID"])) {
 			setcookie("UID",$_GET["UID"],0,'/');
@@ -213,22 +213,22 @@ function noosfere($x) {
 			header('Location: '.$goto[0]);
 			echo '';
 		}
-		
+
 		// Identification si cookie UID
 		if(!empty($_COOKIE["UID"])) {
-			$req = "http://axys.me/call?key=hfatyuTr1K7ur5UX9vBNALduR2se2GF9&uid=".$_COOKIE["UID"];
+			$req = "https://axys.me/call?key=hfatyuTr1K7ur5UX9vBNALduR2se2GF9&uid=".$_COOKIE["UID"];
 			if($xml = simplexml_load_file($req)) {
 				if($xml->result == "OK") {
 					$_LOG = array();
 					foreach($xml as $k => $v) {
 						$_LOG[$k] = $v;
 					}
-					if(!empty($_LOG["user_email_key"])) header("Location: http://axys.me/"); // Si l'email n'a pas été vérifié
+					if(!empty($_LOG["user_email_key"])) header("Location: https://axys.me/"); // Si l'email n'a pas été vérifié
 					if($type == "log") return $_LOG;
 				}
-			}	
+			}
 		}
-		
+
 		if($type == "user" and !empty($_LOG)) return True;
 		return False;
 	}
@@ -280,15 +280,15 @@ function ean2isbn($x) {
         $x = addslashes($x);
         if($_MODE != 'img' || $_DEBUG) echo "document.write('".$x."'); \n";
     }
-    
+
 
 function filepath($x, $m = "test", $t = "cover") {
     $filedir = "img/".$t."/".substr($x,-3,3)."/"; // Chemin relatif vers le dossier o doit se trouver le fichier
     $filepath = SITE_PATH.$filedir.$x.".jpg";
     $fileurl = "/".$filedir.$x.".jpg";
-	
+
     if($m == "url") return $fileurl;
-    if($m == "test") {        
+    if($m == "test") {
         if(file_exists($filepath)) return true;
         else return false;
     }
@@ -347,13 +347,13 @@ function filepath($x, $m = "test", $t = "cover") {
 				// Enfin, on en deduit C et D
 				$C = substr($CD,0,$l);
 				$D = substr($CD,$l,8-$l);
-		
+
 				// Pour les ISBN-13 et EAN
 				if($m == "EAN" or $m == "EAN13" or $m == "ISBN" or $m == "ISBN13") {
 						// Calcul de la cle (E) pour un ISBN-13
 						$k = $A.$B.$C.$D;
 						$k = str_split($k);
-						$i = 0; $i2 = 0; $r = 0; 
+						$i = 0; $i2 = 0; $r = 0;
 						while($i2 <= 11)
 						{
 								if($i2%2 == 0) $p = "1";
@@ -370,7 +370,7 @@ function filepath($x, $m = "test", $t = "cover") {
 						if($m == "EAN" or $m == "EAN13") $result = $A.$B.$C.$D.$E;
 						elseif($m == "ISBN" or $m == "ISBN13") $result = $A."-".$B."-".$C."-".$D."-".$E;
 				}
-				
+
 				// Pour les ISBN-10
 				elseif($m == "ISBN10") {
 						$k = $B.$C.$D;
@@ -437,22 +437,22 @@ function short_url($num) {
         $num = bcdiv($num,$len);
         $string = $chars[$mod].$string;
     }
-    $string = $chars[$num].$string;        
+    $string = $chars[$num].$string;
     return $string;
 }
 
     function _date($x,$m) {
         if($x == "0000-00-00 00:00:00" or empty($x)) return NULL;
-        
+
         $x = explode(" ",$x);
         if(empty($x[1])) $x[1] = "00:00:00";
-        
+
         $d = explode("-",$x[0]);
         $h = explode(":",$x[1]);
-        
+
         $t = mktime($h[0],$h[1],$h[2],$d[1],$d[2],$d[0]);
         $N = date("N",$t);
-        
+
         // Traduction mois
             if($d[1] == "01") $mois = "janvier";
         elseif($d[1] == "02") $mois = "février";
@@ -467,7 +467,7 @@ function short_url($num) {
         elseif($d[1] == "11") $mois = "novembre";
         elseif($d[1] == "12") $mois = "décembre";
         else $mois = "?";
-        
+
         // Traduction jour de la semaine
             if($N == 1) $jour = "lundi";
         elseif($N == 2) $jour = "mardi";
@@ -476,7 +476,7 @@ function short_url($num) {
         elseif($N == 5) $jour = "vendredi";
         elseif($N == 6) $jour = "samedi";
         elseif($N == 7) $jour = "dimanche";
-        
+
         $trans = array( // Pour le Samedi 25 septembre 2010 à 16h34
           "d" => $d[2], // 25 (avec zéro)
           "j" => date("j",$t), // 25
@@ -489,13 +489,13 @@ function short_url($num) {
           "H" => $h[0], // 16
           "i" => $h[1] // 34
         );
-        
+
         return strtr($m,$trans);
     }
-	
+
 	// Get MySQL credentials
     include("inc/mysql.php");
-	
+
 	// Connect to MySQL
 	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
 		mysql_select_db($db["base"]);
