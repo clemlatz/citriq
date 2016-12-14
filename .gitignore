@@ -3,6 +3,7 @@
 /img/cover/*
 !.gitkeep
 /inc/mysql.php
+/config.php
 .ovhconfig
 .DS_Store
 sitemap*

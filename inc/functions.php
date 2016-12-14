@@ -493,8 +493,8 @@ function short_url($num) {
         return strtr($m,$trans);
     }
 
-	// Get MySQL credentials
-    include("inc/mysql.php");
+	// Get MySQL credentials and config
+    include("config.php");
 
 	// Connect to MySQL
 	if(mysql_connect($db["host"],$db["user"],$db["pass"])) {
