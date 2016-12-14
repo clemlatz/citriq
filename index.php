@@ -55,8 +55,6 @@
 		}
 	}
 
-    mysql_select_db($db1["base"]);
-
 
 ?>
 <!DOCTYPE html>

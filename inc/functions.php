@@ -216,7 +216,7 @@ function noosfere($x) {
 
 		// Identification si cookie UID
 		if(!empty($_COOKIE["UID"])) {
-			$req = "https://axys.me/call?key=hfatyuTr1K7ur5UX9vBNALduR2se2GF9&uid=".$_COOKIE["UID"];
+			$req = "http://axys.me/call?key=hfatyuTr1K7ur5UX9vBNALduR2se2GF9&uid=".$_COOKIE["UID"];
 			if($xml = simplexml_load_file($req)) {
 				if($xml->result == "OK") {
 					$_LOG = array();

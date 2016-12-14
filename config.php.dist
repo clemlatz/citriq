@@ -1,0 +1,10 @@
+<?php
+
+$db = [
+	"host" => "localhost",
+	"user" => "citriq",
+	"pass" => "pass",
+	"base" => "citriq"
+];
+
+$https = false;
