@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+### 1.2.0 (14/12/2016)
+* Ajout d'une option pour forcer la connexion en HTTPS
+* Utilisation de HTTPS pour Axys
+* Utilisation de HTTPS pour Google Fonts
+
 ### 1.1.3 (02/08/2015)
 * Correction d'un problème lors de l'ajout de nouvelles critiques
 
