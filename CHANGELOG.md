@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+### 1.2.1 (05/01/2017)
+* Correction d'un bug affectant le bon fonctionnement du widget
+
 ### 1.2.0 (14/12/2016)
 * Ajout d'une option pour forcer la connexion en HTTPS
 * Utilisation de HTTPS pour Axys
