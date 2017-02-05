@@ -494,7 +494,11 @@ function short_url($num) {
     }
 
 	// Get MySQL credentials and config
-    include("config.php");
+	if (file_exists("config.php")) {
+        include("config.php");
+    } else {
+        include("../config.php");
+    }
 
     // Redirect to HTTPS if forced in config
     if ($https === true && (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off")) {
