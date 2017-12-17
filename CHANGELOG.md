@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+### 1.2.2 (17/12/2017)
+* Correction d'un bug affectant l'authentification Axys
+
 ### 1.2.1 (05/01/2017)
 * Correction d'un bug affectant le bon fonctionnement du widget
 
